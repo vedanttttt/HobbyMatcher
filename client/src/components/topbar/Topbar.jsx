@@ -1,13 +1,18 @@
 import React,{useContext} from "react";
 import "./topbar.css";
 import {Search,Person,Chat,Notifications} from '@mui/icons-material'
-import {Link} from 'react-router-dom'
+import {Link,Navigate} from 'react-router-dom'
 import {AuthContext} from '../../context/AuthContext'
 
 export default function Topbar() {
 
-  const {user} = useContext(AuthContext);
+  const {user,dispatch} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  function handleLogout(){
+    dispatch({type:'LOGOUT'});
+    <Navigate to="/" />
+  }
 
   return <div className="topbarContainer">
     <div className="topbarLeft">
@@ -25,6 +30,7 @@ export default function Topbar() {
       <div className="topbarLinks">
         <span className="topbarLink">Homepage</span>
         <span className="topbarLink">Timeline</span>
+        <span className="topbarLink" onClick={handleLogout}>Logout</span>
       </div>
       <div className="topbarIcons">
         <div className="topbarIconItem">

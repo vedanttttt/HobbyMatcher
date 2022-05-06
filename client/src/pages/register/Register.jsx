@@ -9,6 +9,7 @@ export default function Register() {
   const email = useRef();
   const password = useRef();
   const passwordAgain = useRef();
+  const hobby = useRef();
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -20,7 +21,8 @@ export default function Register() {
       const user = {
         username : username.current.value,
         email : email.current.value,
-        password : password.current.value
+        password : password.current.value,
+        hobby : hobby.current.value
       }
       try{
       await axios.post('/auth/register',user);
@@ -46,7 +48,7 @@ export default function Register() {
             <input placeholder="Email" required type="email"  ref={email} className="loginInput" />
             <input placeholder="Password" required type="password" minLength="6" ref={password} className="loginInput" />
             <input placeholder="Password Again" required type="password" ref={passwordAgain} className="loginInput" />
-            <input placeholder="Hobbies" className="loginInput" />
+            <input placeholder="Hobbies" type="text" ref={hobby} className="loginInput" />
             <button className="loginButton" type="submit">Sign Up</button>
             <h3>Already have an account ?</h3>
             <Link to='/login'>

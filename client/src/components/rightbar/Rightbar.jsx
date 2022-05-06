@@ -123,7 +123,7 @@ export default function Rightbar({ user }) {
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Hobbies:</span>
-            <span className="rightbarInfoValue">{hobbies.map((h)=> <h4>{h} ,</h4>)}</span>
+            <span className="rightbarInfoValue">{hobbies.map((h)=> <h4>{h} </h4>)}</span>
           </div>
         </div>
         <h4 className="rightbarTitle">User friends</h4>

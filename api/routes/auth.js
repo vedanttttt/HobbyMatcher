@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-//Register
+//REGISTER
 router.post("/register", async (req, res) => {
   try {
     //generate new password
@@ -16,27 +16,35 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
+    if (req.body.hobby) {
+      newUser.hobbies.push(req.body.hobby);
+    }
+
     //save user and respond
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {
-    // console.log(err);
     res.status(500).json(err);
   }
 });
 
-//Login
+//LOGIN
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    !user && res.status(404).json("user not found");
+    if (!user) {
+      res.status(404).json("user not found");
+      return;
+    }
 
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
-
-    !validPassword && res.status(404).json("Wrong password");
+    if (!validPassword) {
+      res.status(400).json("wrong password");
+      return;
+    }
 
     res.status(200).json(user);
   } catch (err) {

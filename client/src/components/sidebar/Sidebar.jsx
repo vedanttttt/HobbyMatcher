@@ -9,13 +9,25 @@ import {RssFeed,
   Event,
   School} from '@mui/icons-material'
 
+import { useContext } from 'react';
+import {AuthContext} from '../../context/AuthContext'
+import {Link} from 'react-router-dom'
 import { Users } from '../../dummyData';
 import CloseFriend from '../closeFriend/CloseFriend'
 
 export default function Sidebar() {
+
+  const {user} = useContext(AuthContext);
+
   return <div className='sidebar'>
       <div className="sidebarWrapper">
       	<ul className="sidebarList">
+          <li className="sidebarListItem">
+            <RssFeed className="sidebarIcon" />
+            <Link to="/explore" style={{"textDecoration":'none',"color":'black'}}>
+              <span className="sidebarListItemText">Explore</span>
+            </Link>
+          </li>
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">Feed</span>
