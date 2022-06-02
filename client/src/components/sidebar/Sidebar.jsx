@@ -30,6 +30,12 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
+            <Link to="/findbyrange" style={{"textDecoration":'none',"color":'black'}}>
+              <span className="sidebarListItemText">Find By Range</span>
+            </Link>
+          </li>
+          <li className="sidebarListItem">
+            <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">Feed</span>
           </li>
           <li className="sidebarListItem">

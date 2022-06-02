@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Messenger from "./pages/messenger/Messenger";
 import Explore from "./pages/explore/Explore";
+import FindByRange from "./pages/findbyrange/FindByRange";
 
 import {
   BrowserRouter as Router,
@@ -33,6 +34,10 @@ function App() {
         <Route
           path="/explore"
           element={!user ? <Navigate to="/" /> : <Explore />}
+        />
+        <Route
+          path="/findbyrange"
+          element={!user ? <Navigate to="/" /> : <FindByRange />}
         />
         <Route
           path="/profile/:username"

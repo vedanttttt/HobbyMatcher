@@ -20,6 +20,11 @@ router.post("/register", async (req, res) => {
       newUser.hobbies.push(req.body.hobby);
     }
 
+    if (req.body.latitude) {
+      newUser.latitude = req.body.latitude;
+      newUser.longitude = req.body.longitude;
+    }
+
     //save user and respond
     const user = await newUser.save();
     res.status(200).json(user);

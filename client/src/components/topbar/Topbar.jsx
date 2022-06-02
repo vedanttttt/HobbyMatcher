@@ -8,6 +8,7 @@ export default function Topbar() {
 
   const {user,dispatch} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  //const PF = 'https://hobbymatcher.herokuapp.com/images/'
 
   function handleLogout(){
     dispatch({type:'LOGOUT'});
@@ -28,8 +29,15 @@ export default function Topbar() {
     </div>
     <div className="topbarRight">
       <div className="topbarLinks">
-        <span className="topbarLink">Homepage</span>
-        <span className="topbarLink">Timeline</span>
+        <Link to="/" style={{textDecoration:"none",color:'white'}}>
+          <span className="topbarLink">Homepage</span>
+        </Link>
+        <Link to={`/profile/${user.username}`} style={{textDecoration:"none",color:'white'}}>
+          <span className="topbarLink">Timeline</span>
+        </Link>
+        <Link to="/messenger" style={{textDecoration:"none",color:'white'}}>
+          <span className="topbarLink">Messenger</span>
+        </Link>
         <span className="topbarLink" onClick={handleLogout}>Logout</span>
       </div>
       <div className="topbarIcons">

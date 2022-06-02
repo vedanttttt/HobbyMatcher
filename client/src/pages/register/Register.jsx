@@ -1,5 +1,5 @@
 import "./register.css";
-import { useRef } from "react";
+import { useRef,useEffect,useState } from "react";
 import axios from "axios";
 import {useNavigate,Link} from 'react-router-dom'
 
@@ -10,7 +10,20 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const hobby = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [long,setLong] = useState(0);
+  const [lat,setLat] = useState(0);
+
+  useEffect(()=>{
+    navigator.geolocation.getCurrentPosition(function(position) {
+      //console.log("Latitude is :", position.coords.latitude);
+      //console.log("Longitude is :", position.coords.longitude);
+      //console.log(typeof position.coords.latitude)
+      setLong(position.coords.longitude);
+      setLat(position.coords.latitude);
+    });
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +35,12 @@ export default function Register() {
         username : username.current.value,
         email : email.current.value,
         password : password.current.value,
-        hobby : hobby.current.value
+        hobby : hobby.current.value,
+        longitude : long,
+        latitude : lat
       }
       try{
+      console.log(user)
       await axios.post('/auth/register',user);
       navigate('/login')
       }catch(err){

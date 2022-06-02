@@ -60,6 +60,12 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    latitude: {
+      type: Number,
+    },
+    longitude: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
